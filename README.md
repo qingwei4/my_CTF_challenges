@@ -12,19 +12,19 @@ Ubuntu 20.04
 ```
 exploit read() to leak infomation, partial overwrite, ret2libc
 
-### fmt2
+### fmt
 ```
 Ubuntu 20.04
 ```
 exploit printf() to leak infomation, ret2libc
 
-fastbin_dup
+### fastbin_dup
 ```
 Ubuntu 20.04
 ```
 fastbin_dup, stash into tcache, hijack __malloc_hook
 
-off-by-null
+### off-by-null
 ```
 Ubuntu 18.04
 ```
