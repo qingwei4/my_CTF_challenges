@@ -29,3 +29,15 @@ fastbin_dup, stash into tcache, hijack __malloc_hook
 Ubuntu 18.04
 ```
 off-by-null overflow, hijack __free_hook
+
+### CGGC/gift
+```
+Ubuntu 20.04
+```
+hijack __stack_chk_fail() then ret2libc
+
+### CGGC/note
+```
+Ubuntu 20.04
+```
+exploit off-by-one on heap

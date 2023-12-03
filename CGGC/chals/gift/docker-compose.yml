@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  gift:
+    build: ./
+    volumes:
+      - ./share:/home/gift:ro
+      - ./xinetd:/etc/xinetd.d/gift:ro
+    ports:
+      - "4240:4240"
+    expose:
+      - "4240"
