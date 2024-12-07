@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  chal:
+    build: ./
+    volumes:
+      - ./share:/home/chal:ro
+      - ./xinetd:/etc/xinetd.d/chal:ro
+    ports:
+      - "4241:4241"
+    expose:
+      - "4241"
