@@ -30,14 +30,25 @@ Ubuntu 18.04
 ```
 off-by-null overflow, hijack __free_hook
 
-### CGGC/gift
+### CGGC 2023/gift
 ```
 Ubuntu 20.04
 ```
 hijack __stack_chk_fail() then ret2libc
 
-### CGGC/note
+### CGGC 2023/note
 ```
 Ubuntu 20.04
 ```
 exploit off-by-one on heap
+
+### CGGC 2024/CGGC_allocator
+use large bin attack to hijack _IO_list_all, then FSOP
+
+### CGGC 2024/baby overflow
+Heap feng shui to leak address, then use heap overflow to RCE
+
+### TSCCTF 2025 / noview
+Overwrite _IO_2_1_stdout_ to leak libc address then use UAF to RCE
+### TSCCTF 2024 / babyheap
+leak libc address via unsorted bin directly, then use heap overflow to get RCE
