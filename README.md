@@ -49,6 +49,6 @@ use large bin attack to hijack _IO_list_all, then FSOP
 Heap feng shui to leak address, then use heap overflow to RCE
 
 ### TSCCTF 2025 / noview
-Overwrite _IO_2_1_stdout_ to leak libc address then use UAF to RCE
+Overwrite \_IO_2_1_stdout_ to leak libc address then use UAF to RCE
 ### TSCCTF 2024 / babyheap
 leak libc address via unsorted bin directly, then use heap overflow to get RCE
