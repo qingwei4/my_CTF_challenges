@@ -1,0 +1,34 @@
+diff --git a/src/maglev/maglev-reducer-inl.h b/src/maglev/maglev-reducer-inl.h
+index 60e26dfff1a..099893dd23c 100644
+--- a/src/maglev/maglev-reducer-inl.h
++++ b/src/maglev/maglev-reducer-inl.h
+@@ -531,14 +531,10 @@ ValueNode* MaglevReducer<BaseT>::GetTaggedValue(
+           AddNewNodeNoInputConversion<Uint32ToNumber>({value}));
+     }
+     case ValueRepresentation::kFloat64: {
+-      if (!IsEmptyNodeType(node_info->type()) && node_info->is_smi()) {
+-        return alternative.set_tagged(
+-            AddNewNodeNoInputConversion<CheckedSmiTagFloat64>({value}));
+-      }
+       // TODO(victorgomes): Do not tag Float64Constant on runtime.
+       return alternative.set_tagged(
+           AddNewNodeNoInputConversion<Float64ToTagged>(
+-              {value}, Float64ToTagged::ConversionMode::kCanonicalizeSmi));
++              {value}, Float64ToTagged::ConversionMode::kForceHeapNumber));
+     }
+     case ValueRepresentation::kHoleyFloat64: {
+       if (!IsEmptyNodeType(node_info->type()) && node_info->is_smi()) {
+diff --git a/src/runtime/runtime-test.cc b/src/runtime/runtime-test.cc
+index 612ae214d75..0f02119af49 100644
+--- a/src/runtime/runtime-test.cc
++++ b/src/runtime/runtime-test.cc
+@@ -2427,9 +2427,6 @@ RUNTIME_FUNCTION(Runtime_CheckNoWriteBarrierNeeded) {
+   if (!object.IsHeapObject()) {
+     return CrashUnlessFuzzing(isolate);
+   }
+-  auto heap_object = Cast<HeapObject>(object);
+-  Tagged<Object> value = args[1];
+-  CHECK(!WriteBarrier::IsRequired(heap_object, value));
+   return args[0];
+ #else
+   UNREACHABLE();

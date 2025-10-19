@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  baby_v8:
+    build: ./
+    volumes:
+      - ./share:/home/ctf:ro
+      - ./xinetd:/etc/xinetd.d/ctf:ro
+
+    ports:
+      - "48763:48763"
+    expose:
+      - "48763"
